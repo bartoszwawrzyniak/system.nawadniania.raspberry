@@ -1,6 +1,6 @@
 import requests
 
-v_url='https://ssl.smsapi.pl/sms.do?username=dzial.it@tfp.com.pl&password=1d1a99f96b751938e01762377c4f8697&from=TFP IT&to=48603780613&message=Rozpoczeto proces podlewania rosliny'
+v_url='https://ssl.smsapi.pl/sms.do?username=username_SMSAPI&password=PASSWORD_FROM_SMS_API_MD5&from=TFP IT&to=48603780613&message=Rozpoczeto proces podlewania rosliny'
 
 r = requests.get(v_url)
 
