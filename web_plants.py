@@ -35,9 +35,13 @@ def action():
     status = water.get_status()
     message = ""
     if (status == 1):
+        exec(open('./sms_status_1.py').read())
         message = "Potrzebuje wody!"
+        
     else:
+        exec(open('./sms_status_2.py').read())
         message = "Jestem szczesliwa roslina"
+        
 
     templateData = template(text = message)
     return render_template("main.html", **templateData)

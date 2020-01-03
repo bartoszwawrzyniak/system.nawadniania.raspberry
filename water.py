@@ -2,6 +2,7 @@ import RPi.GPIO as GPIO
 import datetime
 import time
 
+
 init = False
 
 GPIO.setmode(GPIO.BOARD)
@@ -11,7 +12,7 @@ def get_last_watered():
         f = open("last_watered", "r")
         return f.readline()
     except:
-        return "NEVER!"
+        return "nigdy"
       
 def get_status(pin = 8):
     GPIO.setup(pin, GPIO.IN) 
@@ -19,7 +20,7 @@ def get_status(pin = 8):
 
 def pump_off(pin = 7):
     GPIO.setup(pin, GPIO.HIGH) 
-    
+    exec(open('./sms_off.py').read()) 
 
 def init_output(pin):
     GPIO.setup(pin, GPIO.OUT)
@@ -47,6 +48,7 @@ def pump_on(pump_pin = 7, delay = 1):
     init_output(pump_pin)
     f = open("last_watered", "w")
     f.write("Ostatnie podlanie {}".format(datetime.datetime.now()))
+    exec(open('./sms_on.py').read())
     f.close()
     GPIO.output(pump_pin, GPIO.LOW)
     time.sleep(1)

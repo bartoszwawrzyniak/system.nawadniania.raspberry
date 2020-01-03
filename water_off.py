@@ -1,11 +1,11 @@
-# External module imp
+
 import RPi.GPIO as GPIO
 import datetime
 import time
 
 init = False
 
-GPIO.setmode(GPIO.BOARD) # Broadcom pin-numbering scheme
+GPIO.setmode(GPIO.BOARD) 
 
 def get_last_watered():
     try:
@@ -15,8 +15,9 @@ def get_last_watered():
         return "NEVER!"
       
 def get_status(pin = 7):
-    GPIO.setup(pin, GPIO.HIGH) 
-   # return GPIO.input(pin)
+    exec(open('./sms_off.py').read()) 
+    GPIO.setup(pin, GPIO.HIGH)
+    # return GPIO.input(pin)
 
 
 
@@ -29,7 +30,7 @@ def init_output(pin):
 def auto_water(delay = 5, pump_pin = 7, water_sensor_pin = 8):
     consecutive_water_count = 0
     init_output(pump_pin)
-    print("Here we go! Press CTRL+C to exit")
+    print("test")
     try:
         while 1 and consecutive_water_count < 10:
             time.sleep(delay)
@@ -40,8 +41,8 @@ def auto_water(delay = 5, pump_pin = 7, water_sensor_pin = 8):
                 consecutive_water_count += 1
             else:
                 consecutive_water_count = 0
-    except KeyboardInterrupt: # If CTRL+C is pressed, exit cleanly:
-        GPIO.cleanup() # cleanup all GPI
+    except KeyboardInterrupt: 
+        GPIO.cleanup() 
 
 def pump_on(pump_pin = 7, delay = 1):
     init_output(pump_pin)
